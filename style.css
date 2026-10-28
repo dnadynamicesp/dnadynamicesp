@@ -1233,3 +1233,118 @@ html[data-theme="light"] .dna-profile-body,html[data-theme="light"] body.dna-pro
 @media(max-width:850px){.dna-profile-body .profile-hero{grid-template-columns:1fr .78fr;gap:20px;min-height:450px}.dna-profile-body .profile-portrait-wrap{height:440px}.dna-profile-body .profile-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.dna-profile-body .profile-stat:nth-child(2){border-right:0}.dna-profile-body .profile-stat:nth-child(3){padding-left:0;border-top:1px solid #292c33}.dna-profile-body .profile-stat:nth-child(4){border-top:1px solid #292c33}.dna-profile-body .profile-lower-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.dna-profile-body .premium-profile{padding:17px 16px 20px}.dna-profile-body .profile-topbar{align-items:flex-start}.dna-profile-body .profile-brand{font-size:11px}.dna-profile-body .profile-brand-logo{width:37px;height:37px;flex-basis:37px}.dna-profile-body .brand-mark{width:37px;height:37px}.dna-profile-body .profile-topbar .back-button{padding:10px 9px;font-size:8px;letter-spacing:.8px}.dna-profile-body .profile-hero{grid-template-columns:1fr;gap:20px;padding-top:10px}.dna-profile-body .profile-hero-copy{padding:15px 0 0}.dna-profile-body .profile-kicker{margin-bottom:25px}.dna-profile-body .profile-watermark{font-size:190px;top:30px}.dna-profile-body .profile-portrait-wrap{height:min(112vw,500px);grid-row:1;max-width:100%}.dna-profile-body .profile-hero h1{font-size:clamp(48px,15vw,76px)}.dna-profile-body .profile-hero-meta{margin-top:20px}.dna-profile-body .profile-stat{padding:18px 12px}.dna-profile-body .profile-stat:first-child{padding-left:0}.dna-profile-body .profile-stat:nth-child(3){padding-left:0}.dna-profile-body .profile-panel{padding:21px 17px}.dna-profile-body .record-status{display:none}.dna-profile-body .profile-footer{font-size:8px}}
 @media(prefers-reduced-motion:reduce){.dna-profile-body *{scroll-behavior:auto!important;transition:none!important}}
+
+/* FINAL MOBILE REPAIR — overrides older conflicting rules */
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:clip}
+img,video,svg,canvas{max-width:100%}
+.home-page main,.home-page section,.home-page footer{min-width:0;max-width:100%}
+.home-page .navbar{position:fixed;top:0;left:0;right:0;width:100%;z-index:1500;display:flex;align-items:center;justify-content:space-between}
+.home-page .nav-links{z-index:1501;max-height:calc(100svh - 68px);overflow-y:auto}
+.home-page .hero{width:100%;min-width:0}
+.home-page .hero-content{width:100%;max-width:1000px;min-width:0}
+.home-page .hero h1{overflow-wrap:anywhere}
+.home-page .description{max-width:650px;line-height:1.65}
+.home-page .hero-actions{flex-wrap:wrap}
+.home-page .section-wrap{width:100%;min-width:0}
+.home-page .intro-grid,.home-page .journey-head,.home-page .feature-grid,.home-page .signing-feature,.home-page .signing-secondary,.home-page .profile-lower-grid{min-width:0}
+.home-page .players,.home-page .journey-cards,.home-page .feature-grid,.home-page .media-grid{min-width:0}
+.home-page .player-card,.home-page .feature-card,.home-page .media-card{min-width:0;max-width:100%}
+.home-page .player-image{max-width:100%}
+.home-page .media-tabs{max-width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}
+.home-page .media-tab{flex:0 0 auto}
+.home-page .signing-details{flex-wrap:wrap;gap:12px}
+.home-page .community-box{max-width:100%;min-width:0;overflow:hidden}
+.home-page .community-box h2,.home-page .intro h2,.home-page .section-heading-row h2,.home-page .journey-head h2{overflow-wrap:anywhere}
+.home-page footer{gap:14px;min-width:0}
+.home-page footer p{line-height:1.6;overflow-wrap:anywhere}
+@media (max-width:720px){
+  .home-page .navbar{height:68px;padding:0 14px;gap:8px}
+  .home-page .nav-logo{font-size:12px;letter-spacing:.4px;gap:6px;min-width:0}
+  .home-page .nav-mark{width:30px;height:30px;flex:0 0 30px}
+  .home-page .theme-toggle{flex:0 0 auto;padding:7px 9px;gap:5px}
+  .home-page .menu-toggle{flex:0 0 auto;order:0}
+  .home-page .hero{min-height:auto;padding:110px 18px 65px}
+  .home-page .hero-floats,.home-page .hero-side-label{display:none!important}
+  .home-page .team-logo{width:clamp(90px,28vw,130px);height:auto;aspect-ratio:1;object-fit:contain;margin:25px auto 18px}
+  .home-page .hero h1{font-size:clamp(42px,12.5vw,76px);line-height:.98;letter-spacing:-.055em}
+  .home-page .hero-eyebrow{max-width:100%;font-size:8px;letter-spacing:1px;padding:9px 11px;gap:7px}
+  .home-page .hero-kicker{font-size:8px;letter-spacing:2px;line-height:1.6}
+  .home-page .description{font-size:14px}
+  .home-page .hero-actions{display:flex;flex-direction:column;gap:13px;margin-top:25px}
+  .home-page .button{justify-content:center;max-width:100%;padding:15px 17px}
+  .home-page .hero-bottomline{margin-top:35px;font-size:7px;letter-spacing:1px}
+  .home-page .scroll-cue{display:none}
+  .home-page .section-wrap{padding:58px 17px}
+  .home-page .section-top{align-items:flex-start;gap:12px}
+  .home-page .section-label{font-size:8px;letter-spacing:1.4px;line-height:1.5}
+  .home-page .section-index{font-size:7px;letter-spacing:.5px;text-align:right}
+  .home-page .intro-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding:36px 0 30px}
+  .home-page .intro h2,.home-page .section-heading-row h2,.home-page .journey-head h2,.home-page .community-box h2{font-size:clamp(30px,9vw,45px);line-height:1.04;letter-spacing:-.04em}
+  .home-page .intro-copy p,.home-page .journey-head p,.home-page .feature-card-body p,.home-page .signing-copy>p,.home-page .media-caption p{font-size:13px;line-height:1.75}
+  .home-page .stats-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .home-page .stats-strip>div{min-width:0;padding:16px 9px}
+  .home-page .stats-strip strong{font-size:clamp(18px,5vw,25px)}
+  .home-page .stats-strip>div>span{font-size:7px;letter-spacing:.5px;line-height:1.5;overflow-wrap:anywhere}
+  .home-page .stats-strip .stats-note{padding:13px;gap:9px;font-size:8px;line-height:1.6}
+  .home-page .section-heading-row{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:32px 0 24px}
+  .home-page .roster-count{align-self:flex-start;margin:0}
+  .home-page .players{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .home-page .player-image-wrap{height:clamp(180px,58vw,300px)}
+  .home-page .player-image{width:100%;height:100%;object-fit:cover;object-position:top center}
+  .home-page .player-info{padding:13px 10px;gap:7px}
+  .home-page .player-info h3{font-size:clamp(10px,3vw,14px);overflow-wrap:anywhere}
+  .home-page .player-info p{font-size:7px;letter-spacing:1px}
+  .home-page .card-arrow{display:none}
+  .home-page .journey-head{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;padding:34px 0}
+  .home-page .journey-cards{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .home-page .journey-card{min-height:0;padding:24px 20px}
+  .home-page .feature-grid,.home-page .signing-feature,.home-page .signing-secondary{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+  .home-page .feature-art,.home-page .feature-card-large .feature-art{height:190px;min-height:190px}
+  .home-page .feature-card-body{padding:18px}
+  .home-page .signing-visual{min-height:210px}
+  .home-page .signing-visual img{max-width:42%;height:auto}
+  .home-page .signing-copy{padding:24px 18px}
+  .home-page .signing-copy h3{font-size:clamp(30px,9vw,44px)}
+  .home-page .signing-secondary{padding:18px}
+  .home-page .farewell-placeholder{min-width:0;padding:14px;gap:12px}
+  .home-page .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .home-page .media-thumb,.home-page .video-placeholder,.home-page .meme-placeholder{height:clamp(125px,40vw,190px)}
+  .home-page .media-caption{padding:12px}
+  .home-page .media-caption h3{font-size:10px;overflow-wrap:anywhere}
+  .home-page .media-caption p{font-size:11px}
+  .home-page .community-box{padding:44px 17px}
+  .home-page .community-orbit{width:220px;height:220px;max-width:90vw}
+  .home-page .social-buttons{flex-wrap:wrap}
+  .home-page footer{padding:22px 17px;display:flex;flex-wrap:wrap;gap:12px}
+  .home-page footer p{order:3;width:100%;font-size:11px}
+}
+@media (max-width:380px){
+  .home-page .theme-toggle{padding:7px;gap:3px}
+  .home-page .theme-label{font-size:7px}
+  .home-page .nav-logo{font-size:10px}
+  .home-page .players,.home-page .media-grid{grid-template-columns:minmax(0,1fr)}
+  .home-page .player-image-wrap{height:320px}
+  .home-page .media-thumb,.home-page .video-placeholder,.home-page .meme-placeholder{height:230px}
+  .home-page .stats-strip>div{padding:14px 6px}
+  .home-page .section-wrap{padding-left:14px;padding-right:14px}
+}
+@media (max-width:850px){
+  .dna-profile-body .premium-profile{padding-left:18px;padding-right:18px}
+  .dna-profile-body .profile-hero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .dna-profile-body .profile-portrait-wrap{height:min(105vw,480px);grid-row:auto}
+  .dna-profile-body .profile-hero-copy{min-width:0}
+  .dna-profile-body .profile-watermark{font-size:clamp(100px,24vw,190px);letter-spacing:-.08em;max-width:100%;overflow:hidden}
+  .dna-profile-body .profile-lower-grid{grid-template-columns:minmax(0,1fr)}
+  .dna-profile-body .profile-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dna-profile-body .profile-stat{min-width:0;padding:17px 12px}
+  .dna-profile-body .profile-stat strong{overflow-wrap:anywhere}
+}
+@media (max-width:420px){
+  .dna-profile-body .premium-profile{padding-left:13px;padding-right:13px}
+  .dna-profile-body .profile-topbar{gap:8px;flex-wrap:wrap}
+  .dna-profile-body .profile-topbar .back-button{font-size:8px;padding:9px 8px}
+  .dna-profile-body .profile-hero h1{font-size:clamp(39px,13vw,60px)}
+  .dna-profile-body .profile-portrait-wrap{height:105vw;max-height:430px}
+  .dna-profile-body .profile-stat .uid-value{font-size:clamp(12px,4vw,18px)}
+}
