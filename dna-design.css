@@ -180,3 +180,16 @@
   .card-arrow{width:36px;height:36px;flex-basis:36px}
   .card-arrow svg{width:18px;height:18px}
 }
+
+
+/* Correct mobile icons and separate the emblem from the live-system panel. */
+.ui-arrow{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px}
+.ui-arrow-svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){
+  .hero-emblem{right:-18px;bottom:78px}
+  .floating-hud{left:7%;right:auto;bottom:78px;max-width:215px;z-index:2}
+}
+@media(max-width:420px){
+  .hero-emblem{right:-24px;bottom:78px;width:205px;height:205px}
+  .floating-hud{left:7%;right:auto;bottom:78px;max-width:205px;padding:13px}
+}
