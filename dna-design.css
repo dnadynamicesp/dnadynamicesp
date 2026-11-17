@@ -193,3 +193,30 @@
   .hero-emblem{right:-24px;bottom:78px;width:205px;height:205px}
   .floating-hud{left:7%;right:auto;bottom:112px;width:min(195px,54%);max-width:195px;padding:13px}
 }
+
+
+/* Mobile-only: render the Highlights video play mark as a CSS triangle, not an emoji glyph. */
+@media(max-width:760px){
+  #highlightCard .update-icon{
+    position:relative;
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    font-size:0!important;
+    line-height:0!important;
+    color:transparent!important;
+  }
+  #highlightCard .update-icon::before{
+    content:"";
+    display:block;
+    width:0;
+    height:0;
+    margin-left:5px;
+    border-top:13px solid transparent;
+    border-bottom:13px solid transparent;
+    border-left:21px solid #e31b23;
+    filter:drop-shadow(0 0 5px #e31b2340);
+  }
+}
