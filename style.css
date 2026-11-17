@@ -1348,3 +1348,32 @@ img,video,svg,canvas{max-width:100%}
   .dna-profile-body .profile-portrait-wrap{height:105vw;max-height:430px}
   .dna-profile-body .profile-stat .uid-value{font-size:clamp(12px,4vw,18px)}
 }
+
+
+/* Mobile-only: replace Android emoji arrows with a consistent CSS-drawn icon. */
+@media (max-width: 600px){
+  .dna-profile-body .profile-social-link:first-child .social-symbol{
+    color:transparent!important;
+    font-size:0!important;
+    background-color:#20232a!important;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 17 17 7M8 7h9v9" fill="none" stroke="%23E31B23" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E")!important;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:19px 19px!important;
+  }
+  .dna-profile-body .profile-social-link .social-arrow{
+    display:block!important;
+    width:24px!important;
+    height:24px!important;
+    min-width:24px!important;
+    margin-left:auto!important;
+    overflow:hidden!important;
+    color:transparent!important;
+    font-size:0!important;
+    line-height:0!important;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 17 17 7M8 7h9v9" fill="none" stroke="%23E31B23" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E")!important;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:21px 21px!important;
+  }
+}
