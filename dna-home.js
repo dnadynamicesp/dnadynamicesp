@@ -12,18 +12,43 @@
   $('#menuToggle').addEventListener('click',()=>$('#nav').classList.toggle('open'));
   $$('#nav a').forEach(a=>a.addEventListener('click',()=>$('#nav').classList.remove('open')));
 
-  // Optional premium UI sound pack: soft digital cursor ticks, clicks and section sweeps.
-  // Browser audio starts only after the visitor enables SOUND ON.
-  let soundOn=false, audioCtx=null, lastCursorSound=0, lastScrollCue=0, lastCueSection='';
+  // Premium synthesized sci-fi UI sounds. Audio is opt-in and starts only after SOUND ON.
+  // Desktop: one short cue when entering interactive controls. Mobile: tap/click cues.
+  let soundOn=false, audioCtx=null, lastScrollCue=0, lastCueSection='';
   const soundButton=$('#soundToggle');
   function audio(){audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx;}
-  function tone(freq=520,duration=.075,volume=.018,wave='sine',slide=0){if(!soundOn)return;try{const ctx=audio(),osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=wave;osc.frequency.setValueAtTime(freq,ctx.currentTime);if(slide)osc.frequency.exponentialRampToValueAtTime(Math.max(40,freq+slide),ctx.currentTime+duration);gain.gain.setValueAtTime(volume,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+duration);osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+duration+.01);}catch(_){}}
-  function uiClick(){tone(740,.055,.022,'triangle',360);setTimeout(()=>tone(1120,.045,.012,'sine',-180),35);}
-  function cursorTick(){tone(1450,.022,.004,'sine',-250);}
-  soundButton.addEventListener('click',()=>{soundOn=!soundOn;soundButton.textContent=soundOn?'SOUND ON':'SOUND OFF';soundButton.setAttribute('aria-pressed',String(soundOn));if(soundOn){try{audio();}catch(_){}tone(660,.11,.02,'triangle',500);}});
-  document.addEventListener('pointermove',e=>{if(!soundOn||e.pointerType==='touch')return;const now=performance.now();if(now-lastCursorSound>180){lastCursorSound=now;cursorTick();}},{passive:true});
-  document.addEventListener('click',e=>{if(soundOn&&e.target.closest('a,button,.trophy-model,.map-tab,.filter'))uiClick();},{passive:true});
-  const progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${max>0?scrollY/max:0})`;const now=performance.now();if(soundOn&&now-lastScrollCue>700){const section=$$('main section').find(sec=>{const r=sec.getBoundingClientRect();return r.top<innerHeight*.55&&r.bottom>innerHeight*.45});if(section&&section.id!==lastCueSection){lastCueSection=section.id;lastScrollCue=now;tone(310,.12,.012,'triangle',520);setTimeout(()=>tone(520,.10,.009,'sine',220),75);}}},{passive:true});
+  function blip(startFreq,endFreq,duration,volume,wave='sine',delay=0){
+    if(!soundOn)return;
+    try{
+      const ctx=audio(),t=ctx.currentTime+delay,osc=ctx.createOscillator(),gain=ctx.createGain(),filter=ctx.createBiquadFilter();
+      osc.type=wave;osc.frequency.setValueAtTime(Math.max(35,startFreq),t);osc.frequency.exponentialRampToValueAtTime(Math.max(35,endFreq),t+duration);
+      filter.type='lowpass';filter.frequency.setValueAtTime(4200,t);filter.frequency.exponentialRampToValueAtTime(1100,t+duration);
+      gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(volume,t+.008);gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+      osc.connect(filter);filter.connect(gain);gain.connect(ctx.destination);osc.start(t);osc.stop(t+duration+.02);
+    }catch(_){}
+  }
+  function hoverSound(){blip(980,620,.055,.024,'sine');blip(1480,1050,.035,.009,'triangle',.018);}
+  function clickSound(){blip(520,250,.085,.045,'triangle');blip(920,1380,.075,.026,'sine',.035);}
+  function scrollSound(){blip(260,720,.16,.021,'sawtooth');blip(620,390,.12,.012,'sine',.055);}
+  soundButton.addEventListener('click',()=>{
+    soundOn=!soundOn;soundButton.textContent=soundOn?'SOUND ON':'SOUND OFF';soundButton.setAttribute('aria-pressed',String(soundOn));
+    if(soundOn){try{audio();}catch(_){}blip(420,980,.14,.04,'triangle');}
+  });
+  // No continuous cursor noise: only a single subtle blip when entering a usable control.
+  document.addEventListener('pointerover',e=>{
+    if(!soundOn||e.pointerType==='touch')return;
+    const target=e.target.closest('a,button,.roster-card,.update-card,.media-card,.trophy-model');
+    if(target&&!target.contains(e.relatedTarget))hoverSound();
+  },{passive:true});
+  document.addEventListener('click',e=>{
+    if(soundOn&&e.target.closest('a,button,.trophy-model,.map-tab,.filter,.roster-card,.update-card,.media-card'))clickSound();
+  },{passive:true});
+  const progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
+  window.addEventListener('scroll',()=>{
+    const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${max>0?scrollY/max:0})`;
+    const section=$('main section').find(sec=>{const r=sec.getBoundingClientRect();return r.top<innerHeight*.55&&r.bottom>innerHeight*.45});
+    if(soundOn&&section&&section.id!==lastCueSection&&performance.now()-lastScrollCue>650){lastCueSection=section.id;lastScrollCue=performance.now();scrollSound();}
+  },{passive:true});
   $$('.roster-card').forEach(card=>{card.addEventListener('pointermove',e=>{if(innerWidth<760)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateY(${x*5}deg) rotateX(${-y*4}deg) translateY(-6px)`});card.addEventListener('pointerleave',()=>card.style.transform='')});
   $('.trophy-model').addEventListener('click',()=>toast('Trophy archive demo — add verified achievements from Admin Panel.'));
 
