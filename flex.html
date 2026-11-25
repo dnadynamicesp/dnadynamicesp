@@ -7,6 +7,7 @@
 <meta name="description" content="Official DNA-FLEX player profile — DNA Dynamic Free Fire esports.">
 <title>DNA-FLEX | DNA Dynamic</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dna-themes.css">
 </head>
 <body class="dna-profile-body">
 <button class="profile-theme-toggle theme-toggle" type="button" aria-label="Switch color theme" title="Switch theme"><span class="theme-icon">☼</span><span class="theme-label">LIGHT</span></button>
@@ -47,5 +48,10 @@
   <footer class="profile-footer"><a href="index.html">← BACK TO DNA DYNAMIC</a><span>BUILT FOR THE CLUTCH. <b>DNA DYNAMIC</b></span><span>PLAYER FILE / 02</span></footer>
 </main>
 <script>(()=>{const root=document.documentElement,btn=document.querySelector('.profile-theme-toggle'),icon=btn.querySelector('.theme-icon'),label=btn.querySelector('.theme-label');let saved='dark';try{saved=localStorage.getItem('dna-theme')||'dark'}catch(e){}function setTheme(theme){root.dataset.theme=theme;icon.textContent=theme==='dark'?'☼':'☾';label.textContent=theme==='dark'?'LIGHT':'DARK';try{localStorage.setItem('dna-theme',theme)}catch(e){}}setTheme(saved);btn.addEventListener('click',()=>setTheme(root.dataset.theme==='dark'?'light':'dark'))})();</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="dna-public.js"></script>
+<script src="dna-themes.js"></script>
 </body>
 </html>

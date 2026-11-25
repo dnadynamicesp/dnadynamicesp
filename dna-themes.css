@@ -1,0 +1,288 @@
+/* DNA Dynamic — theme layer. Only look & feel; no content or structure is changed. */
+body{padding-top:40px}.topbar{top:40px}html{scroll-padding-top:124px}
+#thBar{position:fixed;z-index:120;top:0;left:0;right:0;height:40px;display:flex;align-items:center;gap:6px;padding:0 5.5%;background:#050607f2;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff1c;overflow-x:auto;scrollbar-width:none}
+#thBar::-webkit-scrollbar{display:none}
+#thBar .th-label{font:800 8px var(--font,system-ui,sans-serif);letter-spacing:2px;color:#7d848a;margin-right:8px;white-space:nowrap}
+#thBar button{flex:none;display:flex;align-items:center;gap:7px;height:26px;padding:0 11px;border:1px solid #ffffff22;background:transparent;color:#aab0b6;font:800 8px var(--font,system-ui,sans-serif);letter-spacing:1.4px;cursor:pointer;transition:.25s;border-radius:2px}
+#thBar button i{width:7px;height:7px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+#thBar button:hover{color:#fff;border-color:var(--c)}
+#thBar button.on{color:#fff;border-color:var(--c);background:color-mix(in srgb,var(--c) 22%,transparent);box-shadow:0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
+/* progress line */
+#thLine{position:fixed;z-index:119;top:40px;left:0;right:0;height:5px;pointer-events:none;display:none}
+#thLine .fill{position:absolute;left:0;top:0;height:100%;width:0}
+#thLine .run{position:absolute;top:-13px;left:0;width:30px;height:30px;margin-left:-15px;color:var(--red2);filter:drop-shadow(0 0 6px var(--red2));transition:transform .15s}
+#thLine .vein{position:absolute;left:0;top:-8px;height:22px;overflow:hidden;width:0}
+#thLine .vein svg{display:block;height:22px}
+body[data-theme] #thLine{display:block}body[data-theme] .scroll-progress{display:none}
+/* ambient canvas + deco */
+#thCanvas{position:fixed;inset:0;z-index:2;pointer-events:none;width:100%;height:100%}
+#thBig{position:fixed;inset:0;z-index:-1;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 1s}
+#thBig svg{width:min(120vw,1300px);height:auto;color:var(--red)}
+.th-deco{position:absolute;z-index:3;pointer-events:none;color:var(--red2)}
+.th-deco svg{width:100%;height:100%;display:block;overflow:visible}
+.leg{transform-box:fill-box;transform-origin:center;animation:legs .5s ease-in-out infinite alternate}.leg:nth-child(odd){animation-delay:.18s}
+@keyframes legs{to{transform:rotate(7deg)}}
+@keyframes drop{0%,100%{transform:translateY(-26px)}50%{transform:translateY(34px)}}
+@keyframes sway{50%{transform:rotate(3deg) scale(1.02)}}
+@keyframes bob{50%{transform:translateY(-22px) rotate(8deg)}}
+@keyframes spinS{to{transform:rotate(360deg)}}
+@keyframes dash{from{transform:translateX(120%)}to{transform:translateX(-160%)}}
+@keyframes flick{0%,92%,100%{opacity:.08}94%{opacity:.55}96%{opacity:.12}98%{opacity:.4}}
+/* custom cursor */
+#thCur,#thDot{position:fixed;z-index:9999;left:0;top:0;pointer-events:none;border-radius:50%;display:none}
+#thCur{width:34px;height:34px;margin:-17px;border:1.5px solid var(--red2);transition:width .2s,height .2s,margin .2s,background .2s;box-shadow:0 0 14px color-mix(in srgb,var(--red2) 50%,transparent)}
+#thDot{width:6px;height:6px;margin:-3px;background:var(--red2)}
+#thCur.hot{width:54px;height:54px;margin:-27px;background:color-mix(in srgb,var(--red2) 16%,transparent)}
+@media (hover:hover) and (pointer:fine){body[data-theme],body[data-theme] a,body[data-theme] button{cursor:none}body[data-theme] #thCur,body[data-theme] #thDot{display:block}}
+/* shared theme skin (all themes use the variables below) */
+body[data-theme]{background:var(--t-bg);--white:#f4f4f1}
+body[data-theme] .hero{background:radial-gradient(ellipse at 74% 50%,color-mix(in srgb,var(--red) 32%,var(--t-s1)) 0,var(--t-s1) 36%,var(--t-bg) 72%)}
+body[data-theme] .hero:after{background:linear-gradient(90deg,var(--t-bg) 2%,transparent 75%),repeating-linear-gradient(0deg,transparent 0 79px,#ffffff07 80px),repeating-linear-gradient(90deg,transparent 0 79px,#ffffff07 80px)}
+body[data-theme] .manifesto,body[data-theme] .vault-section,body[data-theme] .tactics-section,body[data-theme] .media-section{background:var(--t-s1)}
+body[data-theme] .roster-section{background:linear-gradient(180deg,var(--t-bg),var(--t-s1) 60%,var(--t-bg))}
+body[data-theme] .arena-section,body[data-theme] .updates-section{background:var(--t-bg)}
+body[data-theme] .final-cta{background:radial-gradient(ellipse at 50% 35%,color-mix(in srgb,var(--red) 30%,var(--t-s1)),var(--t-s1) 45%,var(--t-bg) 80%)}
+body[data-theme] .topbar{background:color-mix(in srgb,var(--t-bg) 86%,transparent);border-bottom-color:color-mix(in srgb,var(--red) 40%,transparent)}
+body[data-theme] .footer{background:var(--t-bg)}
+body[data-theme] .roster-card,body[data-theme] .update-card,body[data-theme] .radar-panel,body[data-theme] .match-list,body[data-theme] .stream-panel,body[data-theme] .media-card{background:var(--t-card);border-color:color-mix(in srgb,var(--red) 38%,transparent)}
+body[data-theme] .player-art{background:radial-gradient(ellipse at 50% 45%,color-mix(in srgb,var(--red) 38%,transparent),transparent 62%),linear-gradient(145deg,var(--t-s2),var(--t-bg))}
+body[data-theme] .roster-card:hover,body[data-theme] .update-card:hover{border-color:var(--red2);box-shadow:0 20px 55px #000a,0 0 34px color-mix(in srgb,var(--red) 45%,transparent)}
+body[data-theme] .floating-hud{border-color:color-mix(in srgb,var(--red) 55%,transparent)}
+body[data-theme] .hero-overline,body[data-theme] .section-no,body[data-theme] .role-label,body[data-theme] .card-arrow,body[data-theme] .eyebrow-line{color:var(--red2)}
+body[data-theme] .eyebrow-line{background:var(--red2)}
+body[data-theme] .btn-light,body[data-theme] .map-tab.active,body[data-theme] .filter.active,body[data-theme] .media-kind{background:var(--red);color:#fff;border-color:var(--red)}
+body[data-theme] .map-tab:hover,body[data-theme] .filter:hover{background:var(--red);border-color:var(--red);color:#fff}
+body[data-theme] .btn-outline{border-color:var(--red);color:#fff}
+body[data-theme] :is(.hero h1,.manifesto h2,.heading-row h2,.vault-copy h2,.final-cta h2,.brand,.player-meta h3,.update-card h3,.stream-panel h3,.loader-word){font-family:var(--display)}
+/* roster-card decoration per theme (web, cracks, runes, pitch, stars, grid) */
+.roster-card:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .4s;background-repeat:no-repeat;background-size:cover}
+body[data-theme] .roster-card:after{opacity:1;background-image:var(--t-deco)}
+/* themes */
+body[data-theme=spider]{--red:#e1102b;--red2:#ff3048;--t-bg:#060812;--t-s1:#0a0e20;--t-s2:#141b3c;--t-card:linear-gradient(145deg,#161d3e,#080b1a 72%);--display:'Anton',sans-serif;--c:#ff3048;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg stroke='%23ffffff' stroke-opacity='.34' fill='none' stroke-width='1'%3E%3Cpath d='M0 0L150 190M0 0L300 70M0 0L60 400M0 0L300 0M0 0L0 400'/%3E%3Cpath d='M40 0Q34 22 0 40M90 0Q75 50 0 90M150 0Q110 95 0 150M220 0Q150 150 0 220'/%3E%3Cpath d='M300 400L150 210M300 400L0 330M300 400L240 0M300 400L300 0M300 400L0 400'/%3E%3Cpath d='M300 360Q270 365 260 400M300 300Q240 320 215 400M300 230Q200 270 150 400M300 150Q150 210 80 400'/%3E%3C/g%3E%3C/svg%3E")}
+body[data-theme=doom]{--red:#14c45e;--red2:#4dff9a;--t-bg:#050a07;--t-s1:#09130d;--t-s2:#102418;--t-card:linear-gradient(145deg,#142a1d,#070d09 72%);--display:'Oswald',sans-serif;--c:#4dff9a;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg stroke='%234dff9a' stroke-opacity='.4' fill='none' stroke-width='1.2'%3E%3Cpath d='M8 8H60M8 8V60M292 8H240M292 8V60M8 392H60M8 392V340M292 392H240M292 392V340'/%3E%3Cpath d='M150 12l8 14h-16zM12 200l14 8v-16zM288 200l-14 8v-16z'/%3E%3C/g%3E%3C/svg%3E")}
+body[data-theme=stranger]{--red:#d4121c;--red2:#ff2e3a;--t-bg:#04030a;--t-s1:#0a0610;--t-s2:#1a0a14;--t-card:linear-gradient(145deg,#1d0a12,#070409 72%);--display:'Staatliches',sans-serif;--c:#ff2e3a;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg stroke='%23ff2e3a' stroke-opacity='.45' fill='none' stroke-width='1.2'%3E%3Cpath d='M0 40Q30 50 40 80T70 130M300 360Q260 340 250 300T210 250M0 380Q40 350 30 310M300 30Q270 60 285 100T260 160'/%3E%3C/g%3E%3C/svg%3E")}
+body[data-theme=naruto]{--red:#ff7a00;--red2:#ffa21f;--t-bg:#0a0912;--t-s1:#120f1f;--t-s2:#1d1830;--t-card:linear-gradient(145deg,#231a33,#0b0914 72%);--display:'Teko',sans-serif;--c:#ffa21f;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg fill='none' stroke='%23ffa21f' stroke-opacity='.4' stroke-width='1.3'%3E%3Ccircle cx='250' cy='350' r='34'/%3E%3Ccircle cx='250' cy='350' r='18'/%3E%3Cpath d='M250 316v68M216 350h68'/%3E%3Cpath d='M20 24c20 0 20 20 0 20s-14-14 8-14'/%3E%3C/g%3E%3C/svg%3E")}
+body[data-theme=efootball]{--red:#1f7bff;--red2:#5ab0ff;--t-bg:#040a16;--t-s1:#08142a;--t-s2:#0f2347;--t-card:linear-gradient(145deg,#112a55,#06101f 72%);--display:'Rajdhani',sans-serif;--c:#5ab0ff;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.22' stroke-width='1.2'%3E%3Crect x='10' y='10' width='280' height='380'/%3E%3Cpath d='M10 200H290'/%3E%3Ccircle cx='150' cy='200' r='44'/%3E%3Crect x='90' y='10' width='120' height='50'/%3E%3Crect x='90' y='340' width='120' height='50'/%3E%3C/g%3E%3C/svg%3E")}
+body[data-theme=gta]{--red:#ff3d8b;--red2:#ff9d3d;--t-bg:#0f0418;--t-s1:#190726;--t-s2:#2a0c3d;--t-card:linear-gradient(145deg,#33104d,#0e0417 72%);--display:'Bebas Neue',sans-serif;--c:#ff6fae;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff9d3d' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23ff3d8b' stop-opacity='.38'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='400' fill='url(%23g)'/%3E%3Cpath d='M20 400V330M20 330q-20-10-26-4M20 330q18-14 30-6M20 330q-4-20 12-26M280 400V320M280 320q-22-8-30 0M280 320q20-14 34-4' stroke='%23000' stroke-opacity='.55' stroke-width='5' fill='none'/%3E%3C/svg%3E")}
+body[data-theme=f1]{--red:#e10600;--red2:#ff3a2e;--t-bg:#08080a;--t-s1:#111114;--t-s2:#1b1b20;--t-card:linear-gradient(145deg,#202026,#09090b 72%);--display:'Saira Condensed',sans-serif;--c:#ff3a2e;--t-deco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg fill='%23ffffff' fill-opacity='.13'%3E%3Cpath d='M200 0h20v20h-20zM240 0h20v20h-20zM220 20h20v20h-20zM260 20h20v20h-20zM200 40h20v20h-20zM240 40h20v20h-20z'/%3E%3C/g%3E%3Cpath d='M0 390H300' stroke='%23e10600' stroke-width='6'/%3E%3C/svg%3E")}
+/* line styles */
+body[data-theme=spider] #thLine .fill{height:2px;top:2px;background:linear-gradient(90deg,#8a0a1c,#ff3048);box-shadow:0 0 10px #ff3048,0 5px 0 -1px #ff304855}
+body[data-theme=doom] #thLine .fill{background:repeating-linear-gradient(90deg,#14c45e 0 14px,#4dff9a 14px 18px);box-shadow:0 0 14px #4dff9a}
+body[data-theme=naruto] #thLine .fill{background:linear-gradient(90deg,#ff5a00,#ffa21f,#ffd36b);box-shadow:0 0 14px #ffa21f}
+body[data-theme=efootball] #thLine .fill{height:4px;background:repeating-linear-gradient(90deg,#1f7bff 0 40px,#5ab0ff 40px 80px);box-shadow:0 0 12px #5ab0ff}
+body[data-theme=gta] #thLine .fill{background:linear-gradient(90deg,#ff9d3d,#ff3d8b,#7a2cff);box-shadow:0 0 16px #ff3d8b}
+body[data-theme=f1] #thLine .fill{background:repeating-conic-gradient(#fff 0 25%,#111 0 50%) 0 0/10px 10px;height:5px;border-bottom:1px solid #e10600;box-shadow:0 0 12px #e1060088}
+body[data-theme=stranger] #thLine .fill{display:none}
+@media(max-width:760px){#thBar{padding:0 3%}body{padding-top:40px}.topbar{top:40px}#thLine .run{width:24px;height:24px;margin-left:-12px}}
+@media(prefers-reduced-motion:reduce){.th-deco,.th-deco *{animation:none!important}}
+
+/* GTA beach */
+.th-sea{position:absolute;left:0;right:0;bottom:22%;top:0;background:linear-gradient(#ff8fc0,#7a2cff 40%,#1b0b3d);opacity:.9}
+.th-sea:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 78%,#ffffff40 78%);background-size:100% 18px;animation:waves 5s linear infinite}
+.th-sea:after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#ffd58a;box-shadow:0 0 18px #ff9d3d}
+.th-sand{position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(#f0c488,#7d4a2b 70%,#2a140d);clip-path:polygon(0 18%,100% 0,100% 100%,0 100%)}
+@keyframes waves{to{background-position:0 18px}}
+/* F1 */
+.rev{display:flex;gap:7px}.rev i{width:15px;height:15px;border-radius:50%;background:#1a1a1d;border:1px solid #333;transition:.12s}
+.rev i.g{background:#12e05a;box-shadow:0 0 12px #12e05a}.rev i.r{background:#ff2a1c;box-shadow:0 0 12px #ff2a1c}.rev i.b{background:#2d7bff;box-shadow:0 0 12px #2d7bff}
+body[data-theme=f1] .section-head{border-bottom:4px solid transparent;border-image:repeating-linear-gradient(90deg,#e10600 0 16px,#fff 16px 32px) 1}
+body[data-theme=f1] .roster-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;z-index:3;background:repeating-linear-gradient(#e10600 0 12px,#fff 12px 24px)}
+@media(max-width:760px){.th-deco[style*="z-index:1"],.th-deco[style*="z-index:2"]{display:block!important}}
+
+@keyframes hangs{0%,100%{transform:translateY(-3%)}50%{transform:translateY(2.5%)}}
+#thLine .run img{width:100%;height:100%;object-fit:contain;display:block}
+body[data-theme=spider] #thLine .run img{filter:drop-shadow(0 0 5px #ff3048)}
+body[data-theme=f1] #thLine .run{width:74px;height:28px;margin-left:-37px;top:-15px}
+body[data-theme=efootball] #thLine .run{width:26px;height:26px;margin-left:-13px;top:-11px}
+body[data-theme] .final-cta{position:relative;overflow:hidden}
+body[data-theme] .hero{overflow:hidden}
+.th-deco{user-select:none}
+
+
+/* ===== v2 ===== */
+body[data-theme] .section,body[data-theme] .hero{position:relative;isolation:isolate}
+#thBig img{width:min(130vw,1500px);height:auto;animation:mfb 16s ease-in-out infinite;opacity:.2}
+@keyframes mfb{0%,100%{transform:scale(1);opacity:.14}50%{transform:scale(1.06);opacity:.24}}
+#thCanvas{opacity:.85}
+.th-strip{right:12px;bottom:0;width:calc(100% - var(--sl,62%) - 12px);height:80%;display:flex;align-items:flex-end;justify-content:flex-end;pointer-events:none}
+.th-strip.narrow{opacity:.4;width:70%}
+.th-mini{right:16px;top:130px;display:flex;gap:10px;z-index:4;pointer-events:none}
+.th-mini .mc{position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--red2) 70%,transparent);box-shadow:0 10px 28px #000a;background:var(--t-s1)}
+.th-mini .mc img{display:block;width:100%;height:100%}
+.mc.round{width:66px;height:66px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--red) 40%,transparent),var(--t-bg))}.mc.round img{object-fit:cover;object-position:50% 14%;transform:scale(1.15)}
+.mc.driver{width:74px;height:130px;border-radius:6px}.mc.driver:nth-child(1){transform:rotate(3deg)}.mc.driver:nth-child(2){transform:rotate(-3deg)}.mc.driver img{object-fit:cover}
+.mc.sticker{width:112px;border-radius:6px;transform:rotate(-3deg);background:#fff}.mc.sticker img{height:auto}
+.mc.card{width:84px;height:112px;border-radius:6px;transform:rotate(3deg)}.mc.card img{object-fit:cover}
+.mc.badge{width:96px;border:0;background:none;box-shadow:none;overflow:visible;filter:drop-shadow(0 8px 18px #000b)}.mc.badge img{height:auto}
+.th-mini .mc i{display:none}
+/* Stranger Things: let the fixed Mind Flayer show through, keep content crisp */
+body[data-theme=stranger] :is(.manifesto,.vault-section,.tactics-section,.media-section,.roster-section,.arena-section,.updates-section,.footer){background:color-mix(in srgb,var(--t-s1) 58%,transparent)}
+body[data-theme=stranger] .hero{background:radial-gradient(ellipse at 74% 50%,color-mix(in srgb,var(--red) 22%,transparent) 0,transparent 62%)}
+/* roster card overlays from your pictures */
+body[data-theme=spider]{--t-deco:url("images/themes/spider/web.jpg")}
+body[data-theme=doom]{--t-deco:url("images/themes/doom/doom2.jpg")}
+body[data-theme=stranger]{--t-deco:url("images/themes/stranger/veins.jpg")}
+body[data-theme=gta]{--t-deco:url("images/themes/gta/palms.jpg")}
+body[data-theme=spider] .roster-card:after{mix-blend-mode:screen;opacity:.55}
+body[data-theme=doom] .roster-card:after{mix-blend-mode:screen;opacity:.5;-webkit-mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%);mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%)}
+body[data-theme=stranger] .roster-card:after{mix-blend-mode:screen;opacity:.55;-webkit-mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%);mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%)}
+body[data-theme=gta] .roster-card:after{opacity:.5;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%);mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%)}
+/* ===== player pages ===== */
+body.dna-profile-body{--sl:60%}
+.profile-theme-toggle{top:52px!important}
+body[data-theme] .profile-theme-toggle{display:none}
+body[data-theme].dna-profile-body{--bg:var(--t-bg);--surface:var(--t-s1);--card:var(--t-s2);--accent:var(--red);--accent2:var(--red2);--hero-glow:color-mix(in srgb,var(--red) 22%,transparent);background:var(--t-bg)}
+body[data-theme] .premium-profile{position:relative;isolation:isolate;background:radial-gradient(ellipse at 72% 18%,color-mix(in srgb,var(--red) 24%,transparent),transparent 46%),var(--t-bg)}
+body[data-theme=stranger] .premium-profile{background:radial-gradient(ellipse at 72% 18%,color-mix(in srgb,var(--red) 24%,transparent),transparent 46%),color-mix(in srgb,var(--t-bg) 60%,transparent)}
+body[data-theme] .profile-hero h1,body[data-theme] .profile-panel h3{font-family:var(--display)}
+body[data-theme] .profile-hero h1{letter-spacing:.01em}
+body[data-theme] :is(.profile-kicker,.panel-eyebrow,.portrait-label span,.stat-index,.profile-stat-role strong,.profile-panel h3 em,.record-status,.profile-footer b){color:var(--red2)}
+body[data-theme] .role-badge{border-color:var(--red);color:var(--red2);background:color-mix(in srgb,var(--red) 14%,transparent)}
+body[data-theme] .profile-portrait-wrap{background:radial-gradient(ellipse at 50% 38%,color-mix(in srgb,var(--red) 36%,transparent),transparent 62%),linear-gradient(145deg,var(--t-s2),var(--t-bg) 72%);box-shadow:0 0 60px color-mix(in srgb,var(--red) 28%,transparent)}
+body[data-theme] .portrait-corner{border-color:var(--red2)}
+body[data-theme] :is(.profile-stats,.profile-stat,.profile-panel,.profile-social-link,.profile-footer,.profile-topbar){border-color:color-mix(in srgb,var(--red) 38%,transparent)}
+body[data-theme] .profile-panel,body[data-theme] .profile-social-link{background:color-mix(in srgb,var(--t-s1) 82%,transparent)}
+body[data-theme] .social-symbol,body[data-theme] .achievement-symbol{background:color-mix(in srgb,var(--red) 20%,transparent);color:var(--red2)}
+body[data-theme] .profile-topbar .back-button:hover,body[data-theme] .profile-social-link:hover{border-color:var(--red2);box-shadow:0 0 24px color-mix(in srgb,var(--red) 40%,transparent)}
+/* ===== mobile ===== */
+@media(max-width:760px){
+ .th-deco:not(.th-strip):not(.th-sec):not(.th-pg):not(.th-mini):not(.th-mm):not(.th-spot):not(.keep):not(.th-sc){display:none!important}
+ body[data-theme] .hero.th-cast{padding-bottom:800px}
+ body[data-theme] .hero.th-cast .hero-emblem{width:130px;height:130px;left:50%;right:auto;top:auto;bottom:645px;margin-left:-65px;opacity:1;scale:1;translate:0;transform:none}
+ .th-strip,.th-strip.narrow{left:0!important;right:0!important;width:auto!important;bottom:122px!important;height:360px!important;opacity:1!important;justify-content:center!important}
+ .th-mini{left:0;right:0;top:auto;bottom:500px;justify-content:center;gap:8px}
+ .mc.round{width:52px;height:52px}.mc.driver{width:60px;height:104px}.mc.sticker{width:92px}.mc.card{width:70px;height:94px}.mc.badge{width:78px}
+ .th-hr.keep[src*="f1-car"]{left:50%!important;right:auto!important;transform:translateX(-50%);bottom:170px!important;width:92vw!important}
+ .th-hr.keep[src*="/web."]{width:44vw!important}
+}
+body[data-theme] .hero-emblem{scale:.72;translate:-3% 0}
+@media(max-width:760px){body[data-theme] .hero-emblem{scale:1;translate:0}}
+.th-strip{bottom:96px;height:76%}
+
+#thLine{z-index:121}
+
+/* free-standing miniatures (no frame, no background) */
+.th-mini.free{left:calc(var(--sl,62%) - 390px);right:auto;top:128px;width:370px;height:150px;display:block}
+.th-mini .mc.free{position:absolute;background:none;border:0;box-shadow:none;overflow:visible;filter:drop-shadow(0 8px 10px #000a) drop-shadow(0 0 6px color-mix(in srgb,var(--red2) 45%,transparent))}
+.mc.free img{height:100%;width:auto}
+.mc.free:nth-child(1){left:0;top:22px;height:96px;transform:rotate(-7deg)}
+.mc.free:nth-child(2){left:92px;top:0;height:106px;transform:rotate(6deg)}
+.mc.free:nth-child(3){left:196px;top:30px;height:90px;transform:rotate(-4deg)}
+.mc.free:nth-child(4){left:282px;top:2px;height:102px;transform:rotate(8deg)}
+@media(max-width:760px){
+ .th-mini.free{display:flex;left:0;right:0;top:auto;width:auto;height:auto;bottom:500px;justify-content:center;gap:10px}
+ .th-mini .mc.free{position:static;height:70px!important;transform:none!important}
+}
+
+.th-mini.few .mc.free:nth-child(1){left:120px}.th-mini.few .mc.free:nth-child(2){left:236px;top:6px}
+body[data-theme] .section{overflow-x:clip}
+body[data-theme]{overflow-x:clip}
+@media(max-width:760px){
+ body[data-theme] .hero.th-cast{--sh:380px;--mh:112px;padding-bottom:calc(86px + var(--sh) + var(--mh) + 130px + 30px)}
+ body[data-theme=spider] .hero.th-cast,body[data-theme=doom] .hero.th-cast,body[data-theme=gta] .hero.th-cast{--sh:480px}
+ body[data-theme=gta] .hero.th-cast{--mh:0px}
+ body[data-theme=f1] .hero.th-cast{--sh:230px}
+ .th-strip,.th-strip.narrow{bottom:70px!important;height:var(--sh)!important}
+ .th-mini,.th-mini.free{bottom:calc(78px + var(--sh))!important}
+ body[data-theme] .hero.th-cast .hero-emblem{bottom:calc(86px + var(--sh) + var(--mh) + 12px)}
+ body[data-theme=gta] .hero.th-cast .hero-emblem{left:9%;margin-left:0;bottom:calc(86px + var(--sh) + 12px)}
+ body[data-theme=gta] .th-mini{left:auto!important;right:9%;width:auto;bottom:calc(86px + var(--sh) + 24px)!important;justify-content:flex-end}
+ body[data-theme] .floating-hud{display:none}
+ .th-hr.keep[src*="f1-car"]{bottom:90px!important}
+ .th-mini.free{flex-wrap:wrap;gap:6px}
+ .th-mini .mc.free{height:15vw!important;max-height:72px}
+}
+@media(max-width:760px){body[data-theme] .hero h1{font-size:clamp(38px,16.5vw,105px)}}
+
+/* HUD card only on the original theme */
+body[data-theme] .floating-hud{display:none}
+/* ===== free minis: counts ===== */
+.th-mini.free{left:calc(var(--sl,62%) - 430px)}
+.th-mini.n3 .mc.free:nth-child(1){left:60px}.th-mini.n3 .mc.free:nth-child(2){left:176px;top:4px}.th-mini.n3 .mc.free:nth-child(3){left:278px;top:26px}
+.th-mini.n2 .mc.free:nth-child(1){left:110px}.th-mini.n2 .mc.free:nth-child(2){left:236px;top:6px}
+/* dock of minis in the left page margin (wide screens) */
+.th-dock{position:fixed;left:6px;top:150px;bottom:28px;width:56px;display:flex;flex-direction:column;justify-content:space-around;align-items:center;z-index:4;pointer-events:none}
+.th-dock img{max-width:52px;max-height:78px;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 6px 8px #000a);animation:bob 4.5s ease-in-out infinite}
+.th-dock img:nth-child(2){animation-delay:-1.4s;margin-left:6px}.th-dock img:nth-child(3){animation-delay:-2.6s}.th-dock img:nth-child(4){animation-delay:-3.4s;margin-left:6px}
+@media(max-width:1199px){.th-dock{display:none}}
+@keyframes swing{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+/* ===== ISLAMIC ===== */
+body[data-theme=islamic]{--red:#c9983f;--red2:#f0c36e;--t-bg:#050813;--t-s1:#090e1d;--t-s2:#111a33;--t-card:linear-gradient(160deg,#121c38,#070b17 75%);--display:'Cormorant Garamond',Georgia,serif;--c:#f0c36e;--t-deco:url("images/themes/islamic/calligraphy.jpg")}
+body[data-theme=islamic] :is(.btn-light,.map-tab.active,.filter.active,.media-kind){color:#1a1204}
+body[data-theme=islamic] .hero h1{font-size:clamp(60px,9vw,124px);letter-spacing:.012em;font-weight:700}
+body[data-theme=islamic] #thLine .fill{background:linear-gradient(90deg,#7a5a1e,#f0c36e,#fff1c9);box-shadow:0 0 14px #f0c36e}
+body[data-theme=islamic] .roster-card{border-radius:14px;overflow:hidden;border-color:color-mix(in srgb,#f0c36e 55%,transparent)}
+body[data-theme=islamic] .roster-card:after{mix-blend-mode:screen;opacity:.6;-webkit-mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%);mask-image:radial-gradient(ellipse 60% 52% at 50% 40%,transparent 60%,#000 100%)}
+body[data-theme=islamic] :is(.btn-light,.btn-outline){border-radius:999px}
+.th-ayah{position:relative;isolation:isolate;padding:96px 6%;background:var(--t-s1,#090e1d);text-align:center;overflow:hidden}
+.th-ayah:before{content:"";position:absolute;inset:0;z-index:-1;background:url("images/themes/islamic/gold.jpg") center/cover;opacity:.12}
+.th-ayah .ay-frame{position:relative;max-width:860px;margin:0 auto;padding:46px 34px 40px;border:1px solid color-mix(in srgb,#f0c36e 55%,transparent);border-radius:18px;background:color-mix(in srgb,#050813 78%,transparent);box-shadow:0 0 60px color-mix(in srgb,#f0c36e 14%,transparent)}
+.ay-frame:before,.ay-frame:after{content:"✦";position:absolute;top:-13px;left:50%;margin-left:-8px;color:#f0c36e;background:#090e1d;padding:0 8px;font-size:16px}
+.ay-frame:after{top:auto;bottom:-13px}
+.ay-icon{width:54px;height:auto;display:block;margin:0 auto 14px;opacity:.9}
+.ay-kicker{display:block;font:700 10px/1 system-ui,sans-serif;letter-spacing:.32em;color:#f0c36e;margin-bottom:22px}
+.ay-ar{font-family:'Amiri','Scheherazade New','Noto Naskh Arabic','Traditional Arabic',serif;font-size:clamp(28px,4.4vw,52px);line-height:1.9;color:#fff4d6;margin:0 0 14px;text-shadow:0 0 24px color-mix(in srgb,#f0c36e 35%,transparent)}
+.ay-en{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,2.4vw,27px);font-style:italic;color:#e8e3d4;margin:0 0 16px;line-height:1.45}
+.ay-ref{font:600 11px/1.4 system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#f0c36e;margin:0}
+@media(max-width:760px){.th-ayah{padding:64px 5%}.th-ayah .ay-frame{padding:38px 18px 32px}}
+/* mobile: free minis scattered (not one straight line) */
+@media(max-width:760px){
+ body[data-theme] .th-mini.free{display:block!important;left:0;right:0;width:auto;height:98px;flex-wrap:nowrap}
+ body[data-theme] .th-mini.free .mc.free{position:absolute!important;max-height:78px;transform-origin:50% 50%}
+ body[data-theme] .th-mini.free .mc.free:nth-child(1){height:15vw!important;left:4%;top:20px;transform:rotate(-7deg)!important}
+ body[data-theme] .th-mini.free .mc.free:nth-child(2){height:17vw!important;left:28%;top:0;transform:rotate(6deg)!important}
+ body[data-theme] .th-mini.free .mc.free:nth-child(3){height:14vw!important;left:52%;top:28px;transform:rotate(-4deg)!important}
+ body[data-theme] .th-mini.free .mc.free:nth-child(4){height:16vw!important;left:76%;top:4px;transform:rotate(8deg)!important}
+ body[data-theme] .th-mini.free.n3 .mc.free:nth-child(1){left:8%;top:16px}
+ body[data-theme] .th-mini.free.n3 .mc.free:nth-child(2){left:38%;top:0}
+ body[data-theme] .th-mini.free.n3 .mc.free:nth-child(3){left:68%;top:26px}
+ body[data-theme] .th-mini.free.n2 .mc.free:nth-child(1){left:20%;top:14px}
+ body[data-theme] .th-mini.free.n2 .mc.free:nth-child(2){left:58%;top:0}
+}
+
+/* miniatures spread down the page (each used once, inside the empty section padding) */
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -6px}}
+body[data-theme]{--sph:92px}
+@media(max-width:760px){body[data-theme]{--sph:54px}}
+
+/* phone: all miniatures of a theme (old + new) scattered around together in the band under the logo */
+.th-mm{display:none}
+@media(max-width:760px){
+ .th-mm{display:block;left:0;right:0;bottom:calc(78px + var(--sh));height:calc(var(--mmrows,2)*var(--row,90px));pointer-events:none}
+ .th-mm.above{bottom:calc(78px + var(--sh) + 112px)}
+ .th-mini.free{display:none!important}
+}
+
+@media(max-width:760px){body[data-theme] .th-mini.free{display:none!important}}
+
+@media(max-width:760px){
+ body[data-theme] .section.th-sp-b{padding-bottom:112px}
+ body[data-theme] .section.th-sp-t{padding-top:112px}
+}
+
+/* floating miniatures */
+@keyframes fl1{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -12px;rotate:3deg}}
+@keyframes fl2{0%,100%{translate:0 0;rotate:0deg}50%{translate:6px -9px;rotate:-3deg}}
+@keyframes fl3{0%,100%{translate:0 -4px;rotate:0deg}50%{translate:-5px 8px;rotate:2deg}}
+.th-mini .mc:nth-child(3n+1){animation:fl1 5.2s ease-in-out infinite}
+.th-mini .mc:nth-child(3n+2){animation:fl2 4.6s ease-in-out infinite -1.2s}
+.th-mini .mc:nth-child(3n+3){animation:fl3 5.8s ease-in-out infinite -2.4s}
+/* everything floats gently in every theme */
+@keyframes flc{0%,100%{translate:0 0}50%{translate:0 -9px}}
+.th-strip img{animation:flc 7s ease-in-out infinite}
+.th-strip img:nth-child(2){animation-delay:-2.5s}
+.th-hr.keep[src*="f1-car"]{animation:flc 6.5s ease-in-out infinite}
+.th-spot{animation-name:fl1}
+/* soft floating also stays on when the device asks for reduced motion (tiny, slow, no flashing) */
+@media(prefers-reduced-motion:reduce){
+ .th-mini .mc:nth-child(3n+1),.th-mm img:nth-child(3n+1){animation:fl1 5.2s ease-in-out infinite!important}
+ .th-mini .mc:nth-child(3n+2),.th-mm img:nth-child(3n+2){animation:fl2 4.6s ease-in-out infinite -1.2s!important}
+ .th-mini .mc:nth-child(3n+3),.th-mm img:nth-child(3n+3){animation:fl3 5.8s ease-in-out infinite -2.4s!important}
+ .th-spot{animation:fl2 5.4s ease-in-out infinite!important}
+ .th-strip img,.th-hr.keep[src*="f1-car"]{animation:flc 7s ease-in-out infinite!important}
+}
+
+@media(max-width:300px){
+ body[data-theme=gta] .hero.th-cast .hero-emblem{width:104px;height:104px}
+ body[data-theme=gta] .th-mini .mc.badge{width:62px}
+}

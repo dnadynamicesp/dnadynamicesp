@@ -1,0 +1,9 @@
+All your pictures are already placed (images/themes/). Upload this whole folder to GitHub; nothing else needs editing.
+
+Files in this package
+- index.html, dna-design.css, dna-home.js, dna-themes.css, dna-themes.js, admin.html, admin.js, supabase-config.js  (from the earlier project, with the theme layer added)
+- jiad.html, flex.html, ninja.html, samba.html  (your player pages, now themed; only two lines added)
+- images/  (your logo + the 4 player pictures + images/themes/ with all theme pictures)
+- style.css, dna-public.js  (required by the 4 player pages; copied unchanged from your zip)
+
+Themes: Spider-Man, Dr Doom, Stranger Things, Naruto, eFootball, GTA VI, Formula 1. The chosen theme follows the visitor from the home page to the player pages.
